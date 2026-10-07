@@ -5,15 +5,7 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Brainrot from "./Components/Brainrot";
 import Home from './Pages/Home';
-import Session from './Components/Session';
-
-const THEMES = ['dark', 'light', 'colorblind'];
-
-function getInitialTheme() {
-  const stored = localStorage.getItem('theme');
-  if (!THEMES.includes(stored)) return 'dark';
-  return stored;
-}
+import Timer from './Components/Timer';
 
 function App() {
   const [theme, setTheme] = useState(getInitialTheme);
@@ -47,6 +39,10 @@ function App() {
           >
             Brainrot
           </NavLink>
+          <NavLink to = "/timer">
+            Timer
+          </NavLink>
+
         </nav>
 
         <div>
@@ -55,7 +51,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/brainrot" element={<Brainrot />} />
-            <Route path="/session" element={<Session />} />
+            <Route path="/timer" element={<Timer />} />
           </Routes>
         </div>
       </div>
