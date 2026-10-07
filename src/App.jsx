@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'; 
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import './App.css';
 import Login from './Components/Login';
@@ -7,6 +8,13 @@ import Home from './Pages/Home';
 import Timer from './Components/Timer';
 
 function App() {
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
   return (
     <Router>
       <div className="App">
@@ -39,7 +47,7 @@ function App() {
 
         <div>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home theme={theme} setTheme={setTheme} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/brainrot" element={<Brainrot />} />
